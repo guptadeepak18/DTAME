@@ -17,15 +17,17 @@
 #' @return A List with Model Attributes & Evaluation Results
 #' @export
 #' @examples
-#' create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket = 10, cp = 0, prune = FALSE, plot = TRUE)
-#' \dontrun{ }
-#' \donttest{ }
+#' create.eval.cart(sleep, group, plot = FALSE)
+
+
 
 
 create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket = 10, cp = 0, prune = FALSE, plot = TRUE) {
 
   # attach(x)
   # return(response)
+
+  # utils::data(hacide)
 
   # Getting Seed from User
   #  if(is.null(seed))

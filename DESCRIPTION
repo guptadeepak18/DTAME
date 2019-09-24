@@ -4,7 +4,9 @@ Title: Build & Evaluate Desicion Trees
 Version: 0.1.0
 Authors@R: person("Deepak", "Gupta", email = "deepak@analyticsacademy.ml",
                   role = c("aut", "cre"))
-Description: This package will help you build and evaluate your classification models such as CART & Random Forest on multiple parameters
+Description: This package helps to build Classification Models such as CART & Random Forest.
+    It also helps in evaluating the Models created on multiple Evluation Parameters like Confusion Matrix, Accuracy, Recall, Sphericity
+    AUC, KS, Gini, Concordance, Discordance, Pairs & Ties.
 License: GPL-2 | GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -17,5 +19,7 @@ Imports:
 	plyr,
 	data.table,
 	rpart,
-	rpart.plot
+	rpart.plot,
+	utils
+Roxygen: list(markdown = TRUE)	
 RoxygenNote: 6.1.99.9000

@@ -34,10 +34,8 @@ After the split it builds a CART model on training data and evaluates the perfor
 It can also optimize the CART tree by pruning it as per the least Cross Validation error, user has to define if they want the model to be pruned or not.
 }
 \examples{
-create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket = 10, cp = 0, prune = FALSE, plot = TRUE)
-\dontrun{ }
-\donttest{ }
+create.eval.cart(sleep, group, plot = FALSE)
 }
 \author{
-Gupta, Deepak <deepak@analyticsacedemy.ml>
+Gupta, Deepak \href{mailto:deepak@analyticsacedemy.ml}{deepak@analyticsacedemy.ml}
 }

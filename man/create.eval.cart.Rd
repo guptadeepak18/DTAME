@@ -37,5 +37,5 @@ It can also optimize the CART tree by pruning it as per the least Cross Validati
 create.eval.cart(sleep, group, plot = FALSE)
 }
 \author{
-Gupta, Deepak \href{mailto:deepak@analyticsacedemy.ml}{deepak@analyticsacedemy.ml}
+Gupta, Deepak <deepak@analyticsacedemy.ml>
 }

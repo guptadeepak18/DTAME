@@ -1,6 +1,6 @@
-# DTAME
-Build &amp; DTAME stands for Decision Trees and Model Evaluation
-Decision Trees and Model Evaluation - This package helps to build & evaluate Classification Models such as CART & Random Forest. 
+# DTAME - Decision Trees and Model Evaluation
+
+This package helps to build & evaluate Classification Models such as CART & Random Forest. 
 
 This is the only package which has functions that can help to create, optimize and evaluate the model at a single place and you get a list as an output which can be used further in different functions as input for further analysis. 
 

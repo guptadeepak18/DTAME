@@ -14,6 +14,7 @@
 #' @param prune Pruning Tree on the basis of minimum Cross Validation Error (xerror), default = FALSE
 #' @param plot Plot the model Tree and CP Table
 #' @author Gupta, Deepak <deepak@analyticsacedemy.ml>
+#' @author Sharma, Raman <raman@analyticsacademy.ml>
 #' @return A List with Model Attributes & Evaluation Results
 #' @export
 #' @examples

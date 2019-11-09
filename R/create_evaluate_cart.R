@@ -137,7 +137,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
 
   train.pred <- stats::predict(tree, data = train, type ="class")
   #table(train.pred)
-  train.prob <- stats::predict(tree, data = train, type ="prob")[,"1"]
+  train.prob <- stats::predict(tree, data = train, type ="prob")[,2]
   #train_withPred <- cbind(train.pred, train)
   #train_withProb <- cbind(train.prob, train_withPred)
   #head(train_withProb)
@@ -242,7 +242,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
   # baseline_test <- sum(response_tst == 1) / nrow(test)
   test.pred <- stats::predict(tree, newdata = test, type ="class")
   #table(test.pred)
-  test.prob <- stats::predict(tree, newdata = test, type ="prob")[,"1"]
+  test.prob <- stats::predict(tree, newdata = test, type ="prob")[,2]
   test_withPred <- cbind(test.pred, test)
   test_withProb <- cbind(test.prob, test_withPred)
   #head(test_withProb)
@@ -386,7 +386,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
 
     train.pred <- stats::predict(ptree, data = train, type ="class")
     #table(train.pred)
-    train.prob <- stats::predict(ptree, data = train, type ="prob")[,"1"]
+    train.prob <- stats::predict(ptree, data = train, type ="prob")[,2]
     #train_withPred <- cbind(train.pred, train)
     #train_withProb <- cbind(train.prob, train_withPred)
     #head(train_withProb)
@@ -491,7 +491,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
     # baseline_test <- sum(response_tst == 1) / nrow(test)
     test.pred <- stats::predict(ptree, newdata = test, type ="class")
     #table(test.pred)
-    test.prob <- stats::predict(ptree, newdata = test, type ="prob")[,"1"]
+    test.prob <- stats::predict(ptree, newdata = test, type ="prob")[,2]
     test_withPred <- cbind(test.pred, test)
     test_withProb <- cbind(test.prob, test_withPred)
     #head(test_withProb)

@@ -218,7 +218,11 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
 
   # CorDisCor (Library(InformationValue))
 
-  cordiscor.train <- InformationValue::Concordance(actuals = train[[response]], predictedScores = train.prob)
+  resp <- as.numeric(train[[response]])
+  resp <- plyr::revalue(resp, c(1,0))
+  resp <- plyr::revalue(resp, c(2,1))
+
+  cordiscor.train <- InformationValue::Concordance(actuals = resp, predictedScores = train.prob)
 
   # return(cordiscor.train)
 

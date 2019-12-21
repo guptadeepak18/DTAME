@@ -14,7 +14,6 @@
 #' @param prune Pruning Tree on the basis of minimum Cross Validation Error (xerror), default = FALSE
 #' @param plot Plot the model Tree and CP Table
 #' @author Gupta, Deepak <deepak@analyticsacedemy.ml>
-#' @author Sharma, Raman <raman@analyticsacademy.ml>
 #' @return A List with Model Attributes & Evaluation Results
 #' @export
 #' @examples
@@ -168,7 +167,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
   #return(rc.train)
 
   # Sphecificty
-  spec.train <- tab.train[2,1] / sum(tab.train[1,])
+  spec.train <- tab.train[1,1] / sum(tab.train[1,])
   #spec.dt.train
   #return(spec.train)
 
@@ -218,9 +217,15 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
 
   # CorDisCor (Library(InformationValue))
 
-  resp <- as.numeric(train[[response]])
-  resp <- plyr::revalue(resp, c(1,0))
-  resp <- plyr::revalue(resp, c(2,1))
+  #res <-  deparse(substitute(response))
+  lev <- levels(train[[response]])
+  resp <- ifelse(train[[response]] == lev[1], 0, 1)
+
+  #resp <- as.numeric(train[[res]])
+  #resp <- as.factor(train[[res]])
+  #resp[resp == "Yes"] <- 1
+  #resp <- plyr::revalue(resp, c("No",0))
+  #resp <- plyr::revalue(resp, c(2,1))
 
   cordiscor.train <- InformationValue::Concordance(actuals = resp, predictedScores = train.prob)
 
@@ -232,7 +237,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
 
 
   names(model.performance_train) <- c("Classification Error Train", "Recall Train",
-                                      "Sphericity Train", "Accuracy Train", "AUC Train", "Gini Train",
+                                      "Specificity Train", "Accuracy Train", "AUC Train", "Gini Train",
                                       "KS Train", "Concordance", "Discordance", "Ties", "Pairs")
 
   #model.performance_results
@@ -274,7 +279,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
   #rc.test
 
   # Sphericity
-  spec.test <- tab.test[2,1] / sum(tab.test[1,])
+  spec.test <- tab.test[1,1] / sum(tab.test[1,])
   #spec.test
 
 
@@ -318,7 +323,9 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
 
   # CorDisCor (Library(InformationValue))
 
-  cordiscor.test <- InformationValue::Concordance(actuals = test[[response]], predictedScores = test.prob)
+  resp_test <- ifelse(test[[response]] == lev[1], 0, 1)
+
+  cordiscor.test <- InformationValue::Concordance(actuals = resp_test, predictedScores = test.prob)
 
   #
   model.performance_test <- c(Classification.Error.test, rc.test, spec.test, acc.test, auc.test,
@@ -326,7 +333,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
   table.results <- table(model.performance_test)
 
   ##
-  names(model.performance_test) <- c("Classification Error Test", "Recall Test", "Sphericity Test",
+  names(model.performance_test) <- c("Classification Error Test", "Recall Test", "Specificity Test",
                                      "Accuracy Test", "AUC Test", "Gini Test", "KS Test", "Concordance",
                                      "Discordance", "Ties", "Pairs")
 
@@ -341,7 +348,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
   #library(data.table)
 
   DT <- data.table::rbindlist(masterlist, use.names=FALSE)
-  colnames(DT)<- c("Classification Error", "Recall", "Sphericity", "Accuracy", "AUC",
+  colnames(DT)<- c("Classification Error", "Recall", "Specificity", "Accuracy", "AUC",
                    "Gini", "KS", "Concordance", "Discordance", "Ties", "Pairs")
 
 
@@ -421,7 +428,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
     #return(rc.train)
 
     # Sphecificty
-    spec.train <- tab.train[2,1] / sum(tab.train[1,])
+    spec.train <- tab.train[1,1] / sum(tab.train[1,])
     #spec.dt.train
     #return(spec.train)
 
@@ -471,7 +478,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
 
     # CorDisCor (Library(InformationValue))
 
-    cordiscor.train <- InformationValue::Concordance(actuals = train[[response]], predictedScores = train.prob)
+    cordiscor.train <- InformationValue::Concordance(actuals = resp, predictedScores = train.prob)
 
     # return(cordiscor.train)
 
@@ -481,7 +488,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
 
 
     names(model.performance_train) <- c("Classification Error Train", "Recall Train",
-                                        "Sphericity Train", "Accuracy Train", "AUC Train", "Gini Train",
+                                        "Specificity Train", "Accuracy Train", "AUC Train", "Gini Train",
                                         "KS Train", "Concordance", "Discordance", "Ties", "Pairs")
 
     #model.performance_results
@@ -523,7 +530,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
     #rc.test
 
     # Sphericity
-    spec.test <- tab.test[2,1] / sum(tab.test[1,])
+    spec.test <- tab.test[1,1] / sum(tab.test[1,])
     #spec.test
 
 
@@ -567,7 +574,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
 
     # CorDisCor (Library(InformationValue))
 
-    cordiscor.test <- InformationValue::Concordance(actuals = test[[response]], predictedScores = test.prob)
+    cordiscor.test <- InformationValue::Concordance(actuals = resp_test, predictedScores = test.prob)
 
     #
     model.performance_test <- c(Classification.Error.test, rc.test, spec.test, acc.test, auc.test,
@@ -575,7 +582,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
     table.results <- table(model.performance_test)
 
     ##
-    names(model.performance_test) <- c("Classification Error Test", "Recall Test", "Sphericity Test",
+    names(model.performance_test) <- c("Classification Error Test", "Recall Test", "Specificity Test",
                                        "Accuracy Test", "AUC Test", "Gini Test", "KS Test", "Concordance",
                                        "Discordance", "Ties", "Pairs")
 
@@ -590,7 +597,7 @@ create.eval.cart <- function(x, response, seed = 42, splitRatio = 0.7, minbucket
     #library(data.table)
 
     DTP <- data.table::rbindlist(masterlist, use.names=FALSE)
-    colnames(DTP)<- c("Classification Error", "Recall", "Sphericity", "Accuracy", "AUC",
+    colnames(DTP)<- c("Classification Error", "Recall", "Specificity", "Accuracy", "AUC",
                      "Gini", "KS", "Concordance", "Discordance", "Ties", "Pairs")
 
 

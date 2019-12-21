@@ -38,6 +38,4 @@ create.eval.cart(sleep, group, plot = FALSE)
 }
 \author{
 Gupta, Deepak \href{mailto:deepak@analyticsacedemy.ml}{deepak@analyticsacedemy.ml}
-
-Sharma, Raman \href{mailto:raman@analyticsacademy.ml}{raman@analyticsacademy.ml}
 }
